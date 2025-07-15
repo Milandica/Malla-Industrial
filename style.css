@@ -1,106 +1,63 @@
 :root {
-  /* fondo rosado clarito */
   --bg-lightpink: #ffe4e1;
-
-  /* colores de recuadros según la imagen Periwinkle */
-  --color-comun: #9A9CEA;        /* morado claro */
-  --color-especialidad: #ADEEE2; /* verdoso */
-
+  --color-comun: #9A9CEA;
+  --color-especialidad: #ADEEE2;
   --grid-gap: 8px;
 }
 
-* {
-  box-sizing: border-box;
-}
-
+* { box-sizing: border-box; }
 body {
   margin: 20px;
   font-family: "Segoe UI", sans-serif;
   background-color: var(--bg-lightpink);
-  color: #333; /* texto normal en negro */
+  color: #333;
 }
+h1 { text-align: center; margin-bottom: 16px; }
 
-h1 {
-  text-align: center;
-  margin-bottom: 16px;
-}
-
-/* grid: 10 columnas (semestres) + 1 fila de cabeceras + filas de cursos */
 #malla-container {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  /* asume 1 fila de cabecera + 6 filas para “tracks” */
   grid-template-rows: auto repeat(6, minmax(50px, auto));
   gap: var(--grid-gap);
 }
-
-/* etiqueta de semestre en fila 1 */
 .semester-label {
   grid-row-start: 1;
   text-align: center;
   font-weight: bold;
   padding: 8px 0;
-  color: #333;
   border-bottom: 2px solid #ccc;
 }
 
-/* estilo base de cada curso */
 .course {
   padding: 6px;
   border-radius: 4px;
-  color: #fff;
   font-size: 0.9rem;
   text-align: center;
+  transition: transform 0.15s, opacity 0.3s;
   cursor: pointer;
-  transition: transform 0.15s ease, opacity 0.3s ease;
 }
-.course:hover {
-  transform: scale(1.05);
+.course:hover { transform: scale(1.05); }
+
+/* Estado LOCKED (prereq faltante) */
+.course.locked {
+  background: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
-/* colores según tipo */
+/* Colores de cursos desbloqueados */
 .course.common {
   background-color: var(--color-comun);
+  color: #fff;
 }
 .course.specialty {
   background-color: var(--color-especialidad);
+  color: #fff;
 }
 
-/* tachado + opacidad para los completados */
+/* Completados */
 .course.completed {
   text-decoration: line-through;
-  opacity: 0.6;
+  opacity: 0.5;
 }
-
-/* cursos con prerrequisitos aún no cumplidos */
-.hidden {
-  display: none;
-}
-
-/* modal (si lo tienes) */
-.modal {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.modal.hidden { display: none; }
-
-.modal-content {
-  background: #fff;
-  padding: 20px;
-  border-radius: 6px;
-  width: 300px;
-  position: relative;
-}
-
-.close {
-  position: absolute;
-  top: 6px; right: 10px;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
