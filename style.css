@@ -1,24 +1,27 @@
 :root {
-  /* Paleta Periwinkle */
-  --p1: #9A9CEA;
-  --p2: #A2B9EE;
-  --p3: #A2DCEE;
-  --p4: #ADEEE2;
-
-  /* Asignación a tipos */
-  --plan-comun: var(--p1);
-  --especialidad: var(--p3);
+  /* Colores nuevos */
+  --bg-lightpink: #ffe4e1;
+  --color-comun: #ADEEE2;
+  --color-especialidad: #A2DCEE;
 
   --grid-gap: 8px;
 }
 
-* { box-sizing: border-box; }
-
+/* Fondo rosado */
 body {
-  margin: 20px;
-  font-family: "Segoe UI", sans-serif;
-  background: #f7f9fc;
+  background-color: var(--bg-lightpink);
 }
+
+/* ... aquí va el resto de tu CSS SIN BORRARLO ... */
+
+.course.common {
+  background-color: var(--color-comun);
+}
+
+.course.specialty {
+  background-color: var(--color-especialidad);
+}
+
 
 h1 {
   text-align: center;
