@@ -89,19 +89,22 @@ for (let sem = 1; sem <= 10; sem++) {
   container.appendChild(lbl);
 }
 
-// 4) Función para desbloquear cursos
+// 4) Función para desbloquear cursos (reemplaza esta, el resto igual)
 function unlockCourses() {
   cursos.forEach(c => {
     const el = document.querySelector(`.course[data-code="${c.code}"]`);
-    if (el.classList.contains('locked')) {
-      // solo desbloquea si todos los prerrequisitos están en 'selected'
-      if (c.prereqs.every(pre => selected.has(pre))) {
-        el.classList.remove('locked');
-        el.classList.add(c.type);
-      }
+    // si tiene prerrequisitos y TODOS ellos están en "selected"
+    if (
+      c.prereqs.length > 0 && 
+      c.prereqs.every(pre => selected.has(pre))
+    ) {
+      // le quitamos el 'locked' y le ponemos su color real
+      el.classList.remove('locked');
+      el.classList.add(c.type);
     }
   });
 }
+
 
 // 5) Renderiza todos los cursos
 cursos.forEach(c => {
