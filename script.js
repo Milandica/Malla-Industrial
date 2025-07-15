@@ -156,18 +156,3 @@ container.addEventListener('click', e => {
   // finalmente, intenta desbloquear los que corresponda
   unlockCourses();
 });
-/* Botón “Limpiar filtros” en rosado más oscuro */
-#clear-btn {
-  background-color: #ffcccc;   /* un poco más oscuro que #ffe4e1 */
-  color: #333;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  margin-bottom: 12px;
-}
-
-#clear-btn:hover {
-  background-color: #ffb3b3;
-}
