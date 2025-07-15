@@ -14,7 +14,7 @@ const cursos = [
   { code: 'Cálculo Diferencial e Integral',       sem: 2, col: 1, type: 'common',    name: 'Cálculo Diferencial e Integral',        prereqs: ['Precálculo'] },
   { code: 'Álgebra Lineal',                       sem: 2, col: 2, type: 'common',    name: 'Álgebra Lineal',                        prereqs: [] },
   { code: 'Física II',                            sem: 2, col: 3, type: 'common',    name: 'Física II',                             prereqs: ['Precálculo'] },
-  { code: 'Programación',                         sem: 2, col: 4, type: 'specialty', name: 'Programación',                          prereqs: [] },
+  { code: 'Programación',                         sem: 2, col: 4, type: 'common',    name: 'Programación',                          prereqs: [] },
   { code: 'Introducción a las Geociencias',       sem: 2, col: 5, type: 'common',    name: 'Introducción a las Geociencias',        prereqs: [] },
   { code: 'Inglés 1',                             sem: 2, col: 6, type: 'common',    name: 'Inglés 1',                              prereqs: [] },
 
