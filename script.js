@@ -14,23 +14,24 @@ const cursos = [
   // Semestre 2
   { code: 'Cálculo Diferencial e Integral',        sem: 2, col: 1, type: 'common',    name: 'Cálculo Diferencial e Integral',        prereqs: ['Precálculo'] },
   { code: 'Álgebra Lineal',                        sem: 2, col: 2, type: 'common',    name: 'Álgebra Lineal',                        prereqs: ['Introducción a Matemáticas Discretas'] },
-  { code: 'Física II',                             sem: 2, col: 3, type: 'common',    name: 'Física II',                             prereqs: ['Precálculo'] },
-  { code: 'Programación',                          sem: 2, col: 4, type: 'common', name: 'Programación',                          prereqs: ['Herramientas Computacionales'] },
+  { code: 'Física II',                             sem: 2, col: 3, type: 'common',    name: 'Física II',                             prereqs: ['Precálculo','Física I'] },
+  { code: 'Programación',                          sem: 2, col: 4, type: 'common',    name: 'Programación',                          prereqs: ['Herramientas Computacionales'] },
   { code: 'Introducción a las Geociencias',        sem: 2, col: 5, type: 'common',    name: 'Introducción a las Geociencias',        prereqs: ['Química'] },
+  { code: 'Inglés 1',                              sem: 2, col: 6, type: 'common',    name: 'Inglés 1',                              prereqs: [] },
 
   // Semestre 3
-  { code: 'Cálculo Avanzado',                      sem: 3, col: 1, type: 'common',    name: 'Cálculo Avanzado',                      prereqs: ['Cálculo Diferencial e Integral']},
-  { code: 'Ecuaciones Diferenciales',              sem: 3, col: 2, type: 'common',    name: 'Ecuaciones Diferenciales',              prereqs: ['Cálculo Avanzado'] },
-  { code: 'Economía Industrial',                   sem: 3, col: 3, type: 'specialty', name: 'Economía Industrial',                   prereqs: [] },
-  { code: 'Taller de Industrias',                  sem: 3, col: 4, type: 'specialty', name: 'Taller de Industrias',                  prereqs: [] },
+  { code: 'Cálculo Avanzado',                      sem: 3, col: 1, type: 'common',    name: 'Cálculo Avanzado',                      prereqs: ['Cálculo Diferencial e Integral','Álgebra Lineal']},
+  { code: 'Ecuaciones Diferenciales',              sem: 3, col: 2, type: 'common',    name: 'Ecuaciones Diferenciales',              prereqs: ['Cálculo Diferencial e Integral','Álgebra Lineal'] },
+  { code: 'Economía Industrial',                   sem: 3, col: 3, type: 'specialty', name: 'Economía Industrial',                   prereqs: ['Cálculo Diferencial e Integral'] },
+  { code: 'Taller de Industrias',                  sem: 3, col: 4, type: 'specialty', name: 'Taller de Industrias',                  prereqs: ['Inglés 1'] },
   { code: 'Comunicación Oral y Escrita',           sem: 3, col: 5, type: 'common',    name: 'Comunicación Oral y Escrita',           prereqs: [] },
 
  // Semestre 4
-  { code: 'Probabilidades y Estadística',          sem: 4, col: 1, type: 'common',    name: 'Probabilidades y Estadística' },
-  { code: 'Métodos Numéricos',                     sem: 4, col: 2, type: 'common',    name: 'Métodos Numéricos' },
-  { code: 'Física y Tecnología',                   sem: 4, col: 3, type: 'specialty', name: 'Física y Tecnología' },
-  { code: 'Ingeniería de Procesos y Diseño de Servicios', sem: 4, col: 4, type: 'specialty', name: 'Ingeniería de Procesos y Diseño de Servicios' },
-  { code: 'Introducción a la Bioingeniería',       sem: 4, col: 5, type: 'common',    name: 'Introducción a la Bioingeniería' },
+  { code: 'Probabilidades y Estadística',          sem: 4, col: 1, type: 'common',    name: 'Probabilidades y Estadística',                          prereqs: ['Cálculo Diferencial e Integral'] },
+  { code: 'Métodos Numéricos',                     sem: 4, col: 2, type: 'common',    name: 'Métodos Numéricos',                                     prereqs: [] },
+  { code: 'Física y Tecnología',                   sem: 4, col: 3, type: 'specialty', name: 'Física y Tecnología',                                   prereqs: [] },
+  { code: 'Ingeniería de Procesos y Diseño de Servicios', sem: 4, col: 4, type: 'specialty', name: 'Ingeniería de Procesos y Diseño de Servicios',   prereqs: [] },
+  { code: 'Introducción a la Bioingeniería',       sem: 4, col: 5, type: 'common',    name: 'Introducción a la Bioingeniería',                       prereqs: [] },
 
   // Semestre 5
   { code: 'Minería de Datos',                      sem: 5, col: 1, type: 'common',    name: 'Minería de Datos' },
