@@ -1,42 +1,50 @@
 :root {
-  /* Colores nuevos */
+  /* fondo rosado clarito */
   --bg-lightpink: #ffe4e1;
-  --color-comun: #ADEEE2;
-  --color-especialidad: #A2DCEE;
+
+  /* colores de recuadros según la imagen Periwinkle */
+  --color-comun: #9A9CEA;        /* morado claro */
+  --color-especialidad: #ADEEE2; /* verdoso */
 
   --grid-gap: 8px;
 }
 
-/* Fondo rosado */
+* {
+  box-sizing: border-box;
+}
+
 body {
+  margin: 20px;
+  font-family: "Segoe UI", sans-serif;
   background-color: var(--bg-lightpink);
+  color: #333; /* texto normal en negro */
 }
-
-/* ... aquí va el resto de tu CSS SIN BORRARLO ... */
-
-.course.common {
-  background-color: var(--color-comun);
-}
-
-.course.specialty {
-  background-color: var(--color-especialidad);
-}
-
 
 h1 {
   text-align: center;
   margin-bottom: 16px;
 }
 
-/* Container en grid: 10 filas (semestres) y 6 columnas (aprox) */
+/* grid: 10 columnas (semestres) + 1 fila de cabeceras + filas de cursos */
 #malla-container {
   display: grid;
-  grid-template-rows: repeat(10, minmax(50px, auto));
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+  /* asume 1 fila de cabecera + 6 filas para “tracks” */
+  grid-template-rows: auto repeat(6, minmax(50px, auto));
   gap: var(--grid-gap);
 }
 
-/* Cada curso */
+/* etiqueta de semestre en fila 1 */
+.semester-label {
+  grid-row-start: 1;
+  text-align: center;
+  font-weight: bold;
+  padding: 8px 0;
+  color: #333;
+  border-bottom: 2px solid #ccc;
+}
+
+/* estilo base de cada curso */
 .course {
   padding: 6px;
   border-radius: 4px;
@@ -44,21 +52,32 @@ h1 {
   font-size: 0.9rem;
   text-align: center;
   cursor: pointer;
-  transition: transform 0.15s ease;
+  transition: transform 0.15s ease, opacity 0.3s ease;
 }
 .course:hover {
   transform: scale(1.05);
 }
 
-/* Tipos */
+/* colores según tipo */
 .course.common {
-  background-color: var(--plan-comun);
+  background-color: var(--color-comun);
 }
 .course.specialty {
-  background-color: var(--especialidad);
+  background-color: var(--color-especialidad);
 }
 
-/* Modal */
+/* tachado + opacidad para los completados */
+.course.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* cursos con prerrequisitos aún no cumplidos */
+.hidden {
+  display: none;
+}
+
+/* modal (si lo tienes) */
 .modal {
   position: fixed;
   top: 0; left: 0;
