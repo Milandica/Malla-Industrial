@@ -1,84 +1,49 @@
-:root {
-  /* Paleta Periwinkle */
-  --p1: #9A9CEA;
-  --p2: #A2B9EE;
-  --p3: #A2DCEE;
-  --p4: #ADEEE2;
+// 1) Define tu malla: cada curso con código, semestre (1–10), columna (1–6) y tipo
+const cursos = [
+  { code: 'Precálculo',          sem: 1, col: 1, type: 'common', name: 'Precálculo' },
+  { code: 'Intro Mat. Discretas',sem: 1, col: 2, type: 'common', name: 'Introducción a Matemáticas Discretas' },
+  { code: 'Física I',           sem: 1, col: 3, type: 'common', name: 'Física I' },
+  // ... sigue para cada ramo, ajustando sem y col según el diagrama
+  // Por ejemplo:
+  { code: 'Álgebra Lineal',     sem: 2, col: 2, type: 'common', name: 'Álgebra Lineal' },
+  { code: 'Programación',       sem: 2, col: 4, type: 'specialty', name: 'Programación' },
+  // ... etc.
+];
 
-  /* Asignación a tipos */
-  --plan-comun: var(--p1);
-  --especialidad: var(--p3);
+// 2) Pinta la malla
+const container = document.getElementById('malla-container');
+cursos.forEach(c => {
+  const d = document.createElement('div');
+  d.classList.add('course', c.type);
+  d.textContent = c.code;
+  // Grid positioning
+  d.style.gridRowStart    = c.sem;
+  d.style.gridColumnStart = c.col;
+  // Guarda info en data-attributes
+  d.dataset.nombre = c.name;
+  d.dataset.sem    = c.sem;
+  container.appendChild(d);
+});
 
-  --grid-gap: 8px;
-}
+// 3) Modal logic
+const modal      = document.getElementById('modal');
+const titleEl    = document.getElementById('modal-title');
+const bodyEl     = document.getElementById('modal-body');
+const closeBtn   = document.getElementById('modal-close');
 
-* { box-sizing: border-box; }
+// Al hacer click en cualquier curso
+container.addEventListener('click', e => {
+  const target = e.target;
+  if (!target.classList.contains('course')) return;
+  titleEl.textContent = target.dataset.nombre;
+  bodyEl.textContent  = `Semestre: ${target.dataset.sem}`;
+  modal.classList.remove('hidden');
+});
 
-body {
-  margin: 20px;
-  font-family: "Segoe UI", sans-serif;
-  background: #f7f9fc;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 16px;
-}
-
-/* Container en grid: 10 filas (semestres) y 6 columnas (aprox) */
-#malla-container {
-  display: grid;
-  grid-template-rows: repeat(10, minmax(50px, auto));
-  grid-template-columns: repeat(6, 1fr);
-  gap: var(--grid-gap);
-}
-
-/* Cada curso */
-.course {
-  padding: 6px;
-  border-radius: 4px;
-  color: #fff;
-  font-size: 0.9rem;
-  text-align: center;
-  cursor: pointer;
-  transition: transform 0.15s ease;
-}
-.course:hover {
-  transform: scale(1.05);
-}
-
-/* Tipos */
-.course.common {
-  background-color: var(--plan-comun);
-}
-.course.specialty {
-  background-color: var(--especialidad);
-}
-
-/* Modal */
-.modal {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.modal.hidden { display: none; }
-
-.modal-content {
-  background: #fff;
-  padding: 20px;
-  border-radius: 6px;
-  width: 300px;
-  position: relative;
-}
-
-.close {
-  position: absolute;
-  top: 6px; right: 10px;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
+// Cerrar modal
+closeBtn.addEventListener('click', () => {
+  modal.classList.add('hidden');
+});
+modal.addEventListener('click', e => {
+  if (e.target === modal) modal.classList.add('hidden');
+});
