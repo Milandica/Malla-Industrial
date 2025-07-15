@@ -80,6 +80,26 @@ const cursos = [
 const selected = new Set();
 const container = document.getElementById('malla-container');
 
+// capturamos el botón
+const clearBtn = document.getElementById('clear-btn');
+clearBtn.addEventListener('click', () => {
+  // 1) limpiamos el set de completados
+  selected.clear();
+
+  // 2) recorremos todos los cursos y restauramos su estado inicial
+  cursos.forEach(c => {
+    const el = document.querySelector(`.course[data-code="${c.code}"]`);
+    el.classList.remove('completed', 'common', 'specialty', 'locked');
+
+    // si tiene prerrequisitos, lo bloqueamos; si no, lo pintamos de su tipo
+    if (c.prereqs.length > 0) {
+      el.classList.add('locked');
+    } else {
+      el.classList.add(c.type);
+    }
+  });
+});
+
 // 3) Cabeceras de semestre (fila 1)
 for (let sem = 1; sem <= 10; sem++) {
   const lbl = document.createElement('div');
