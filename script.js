@@ -12,15 +12,15 @@ const cursos = [
 
   // Semestre 2
   { code: 'Cálculo Diferencial e Integral',       sem: 2, col: 1, type: 'common',    name: 'Cálculo Diferencial e Integral',        prereqs: ['Precálculo'] },
-  { code: 'Álgebra Lineal',                       sem: 2, col: 2, type: 'common',    name: 'Álgebra Lineal',                        prereqs: [] },
-  { code: 'Física II',                            sem: 2, col: 3, type: 'common',    name: 'Física II',                             prereqs: ['Precálculo'] },
-  { code: 'Programación',                         sem: 2, col: 4, type: 'common',    name: 'Programación',                          prereqs: [] },
-  { code: 'Introducción a las Geociencias',       sem: 2, col: 5, type: 'common',    name: 'Introducción a las Geociencias',        prereqs: [] },
+  { code: 'Álgebra Lineal',                       sem: 2, col: 2, type: 'common',    name: 'Álgebra Lineal',                        prereqs: ['Introducción a Matemáticas Discretas'] },
+  { code: 'Física II',                            sem: 2, col: 3, type: 'common',    name: 'Física II',                             prereqs: ['Precálculo','Física I'] },
+  { code: 'Programación',                         sem: 2, col: 4, type: 'common',    name: 'Programación',                          prereqs: ['Herramientas Computacionales'] },
+  { code: 'Introducción a las Geociencias',       sem: 2, col: 5, type: 'common',    name: 'Introducción a las Geociencias',        prereqs: ['Química'] },
   { code: 'Inglés 1',                             sem: 2, col: 6, type: 'common',    name: 'Inglés 1',                              prereqs: [] },
 
   // Semestre 3
   { code: 'Cálculo Avanzado',                     sem: 3, col: 1, type: 'common',    name: 'Cálculo Avanzado',                      prereqs: ['Cálculo Diferencial e Integral'] },
-  { code: 'Ecuaciones Diferenciales',             sem: 3, col: 2, type: 'common',    name: 'Ecuaciones Diferenciales',              prereqs: ['Cálculo Avanzado'] },
+  { code: 'Ecuaciones Diferenciales',             sem: 3, col: 2, type: 'common',    name: 'Ecuaciones Diferenciales',              prereqs: ['Álgebra Lineal','Cálculo Diferencial e Integral'] },
   { code: 'Economía Industrial',                  sem: 3, col: 3, type: 'specialty', name: 'Economía Industrial',                   prereqs: ['Cálculo Diferencial e Integral'] },
   { code: 'Taller de Industrias',                 sem: 3, col: 4, type: 'specialty', name: 'Taller de Industrias',                  prereqs: ['Inglés 1'] },
   { code: 'Comunicación Oral y Escrita',          sem: 3, col: 5, type: 'common',    name: 'Comunicación Oral y Escrita',           prereqs: [] },
