@@ -80,27 +80,46 @@ const cursos = [
 const selected = new Set();
 const container = document.getElementById('malla-container');
 
-// capturamos el botón
+// capturamos el botón “Limpiar filtros”
 const clearBtn = document.getElementById('clear-btn');
 clearBtn.addEventListener('click', () => {
   // 1) limpiamos el set de completados
   selected.clear();
 
-  // 2) recorremos todos los cursos y restauramos su estado inicial
+  // 2) restauramos cada curso a su estado inicial
   cursos.forEach(c => {
     const el = document.querySelector(`.course[data-code="${c.code}"]`);
     el.classList.remove('completed', 'common', 'specialty', 'locked');
-
-    // si tiene prerrequisitos, lo bloqueamos; si no, lo pintamos de su tipo
     if (c.prereqs.length > 0) {
       el.classList.add('locked');
     } else {
       el.classList.add(c.type);
     }
   });
+
+  // 3) y actualizamos la barra de progreso
+  updateProgress();
 });
 
-// 3) Cabeceras de semestre (fila 1)
+// ——————————————
+// 3) Capturamos elementos de la barra de progreso
+// ——————————————
+const progressBar  = document.getElementById('progress-bar');
+const progressText = document.getElementById('progress-text');
+const TOTAL_CREDITS = 150;  // ajusta al total real de tu malla
+
+function updateProgress() {
+  let sum = 0;
+  selected.forEach(code => {
+    const curso = cursos.find(c => c.code === code);
+    if (curso) sum += curso.credits || 0;
+  });
+  const pct = Math.min(100, Math.round((sum / TOTAL_CREDITS) * 100));
+  progressBar.style.width = `${pct}%`;
+  progressText.textContent = `${sum} / ${TOTAL_CREDITS} créditos`;
+}
+
+// 4) Cabeceras de semestre (fila 1)
 for (let sem = 1; sem <= 10; sem++) {
   const lbl = document.createElement('div');
   lbl.classList.add('semester-label');
@@ -109,31 +128,28 @@ for (let sem = 1; sem <= 10; sem++) {
   container.appendChild(lbl);
 }
 
-// 4) Función para desbloquear cursos (reemplaza esta, el resto igual)
+// 5) Función para desbloquear cursos
 function unlockCourses() {
   cursos.forEach(c => {
     const el = document.querySelector(`.course[data-code="${c.code}"]`);
-    // si tiene prerrequisitos y TODOS ellos están en "selected"
     if (
-      c.prereqs.length > 0 && 
+      c.prereqs.length > 0 &&
       c.prereqs.every(pre => selected.has(pre))
     ) {
-      // le quitamos el 'locked' y le ponemos su color real
       el.classList.remove('locked');
       el.classList.add(c.type);
     }
   });
 }
 
-
-// 5) Renderiza todos los cursos
+// 6) Renderiza todos los cursos
 cursos.forEach(c => {
   const d = document.createElement('div');
   d.classList.add('course');
   d.innerHTML = `
-  <div class="course-name">${c.code}</div>
-  <div class="course-credits">${c.credits}</div>
-`;
+    <div class="course-name">${c.code}</div>
+    <div class="course-credits">${c.credits}</div>
+  `;
   d.dataset.code   = c.code;
   d.dataset.nombre = c.name;
   d.dataset.sem    = c.sem;
@@ -142,40 +158,40 @@ cursos.forEach(c => {
   d.style.gridRowStart    = c.col + 1;
 
   if (c.prereqs.length > 0) {
-    // si tiene prerrequisitos, arranca bloqueado
     d.classList.add('locked');
   } else {
-    // si no, se pinta de su color inmediatamente
     d.classList.add(c.type);
   }
 
   container.appendChild(d);
 });
 
-// 6) Click → marcar/desmarcar + lock/unlock hijos
+// 7) Click → marcar/desmarcar + lock/unlock hijos + progreso
 container.addEventListener('click', e => {
-  const t = e.target;
-  if (!t.classList.contains('course') || t.classList.contains('locked')) return;
+  const courseEl = e.target.closest('.course');
+  if (!courseEl || courseEl.classList.contains('locked')) return;
 
-  const code = t.dataset.code;
-  const done = t.classList.toggle('completed');
+  const code = courseEl.dataset.code;
+  const done = courseEl.classList.toggle('completed');
 
   if (done) {
     selected.add(code);
   } else {
-    // si se desmarca, también bloquea sus dependientes
     selected.delete(code);
+    // re-lock dependientes
     cursos.forEach(c => {
       if (c.prereqs.includes(code)) {
         const child = document.querySelector(`.course[data-code="${c.code}"]`);
-        child.classList.remove('completed');
-        child.classList.remove(c.type);
+        child.classList.remove('completed', c.type);
         child.classList.add('locked');
         selected.delete(c.code);
       }
     });
   }
 
-  // finalmente, intenta desbloquear los que corresponda
   unlockCourses();
+  updateProgress();
 });
+
+// 8) (Opcional) Abre modal con detalles si lo tienes implementado...
+//    Aquí iría tu lógica de modal si la usas.
