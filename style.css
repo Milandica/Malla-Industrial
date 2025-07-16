@@ -92,3 +92,33 @@ h1 { text-align: center; margin-bottom: 16px; }
   opacity: 0.7;
   color: #fff;        /* para que contraste sobre el fondo de cada curso */
 }
+/* contenedor de la barra de progreso */
+#progress-container {
+  position: relative;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 24px;
+  margin: 12px 0;
+  overflow: hidden;
+}
+
+/* barra llena */
+#progress-bar {
+  background: #9A9CEA; /* morado claro */
+  height: 100%;
+  width: 0%;          /* se irá actualizando desde JS */
+  transition: width 0.4s ease;
+}
+
+/* texto encima */
+#progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #333;
+  pointer-events: none;
+}
