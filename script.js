@@ -106,7 +106,7 @@ clearBtn.addEventListener('click', () => {
 // ——————————————
 const progressBar  = document.getElementById('progress-bar');
 const progressText = document.getElementById('progress-text');
-const TOTAL_CREDITS = 150;  // ajusta al total real de tu malla
+const TOTAL_CREDITS = 312;  // ajusta al total real de tu malla
 
 function updateProgress() {
   let sum = 0;
