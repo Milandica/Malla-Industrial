@@ -64,13 +64,13 @@ const cursos = [
   { code: 'Globalización y Negocios Internacionales', sem: 8, col: 2, type: 'specialty', name: 'Globalización y Negocios Internacionales', prereqs: ['Ingeniería de Marketing'], credits: 6, },
   { code: 'Industria Inteligente',                 sem: 8, col: 3, type: 'specialty', name: 'Industria Inteligente',                 prereqs: ['Tecnologías de Información y Automatización','Logística, Manufactura y Servicios'], credits: 6, },
   { code: 'Planes de Negocio',                     sem: 8, col: 4, type: 'specialty', name: 'Planes de Negocio',                     prereqs: ['Logística, Manufactura y Servicios','Formulación y Evaluación de Proyectos','Ingeniería de Marketing','Taller de Gestión basada en la Evidencia','Proyecto Desarrollo Regional','Gestión de Personas'], credits: 6, },
-  { code: 'Electivo/Minor',                        sem: 8, col: 5, type: 'specialty', name: 'Electivo/Minor',                        prereqs: [], credits: 6, },
+  { code: 'Electivo/Minor8-5',                        sem: 8, col: 5, type: 'specialty', name: 'Electivo/Minor',                        prereqs: [], credits: 6, },
 
   // Semestre 9
   { code: 'Taller de Proyectos',                   sem: 9, col: 1, type: 'common',    name: 'Taller de Proyectos',                   prereqs: ['Legislación en Ingeniería y Medio Ambiente','Práctica Profesional','Planes de Negocio'], credits: 12, },
   { code: 'Electivo I',                            sem: 9, col: 2, type: 'specialty', name: 'Electivo I',                            prereqs: [], credits: 6, },
-  { code: 'Electivo/Minor',                        sem: 9, col: 3, type: 'specialty', name: 'Electivo/Minor',                        prereqs: [], credits: 6,},
-  { code: 'Electivo/Minor',                        sem: 9, col: 4, type: 'specialty', name: 'Electivo/Minor',                        prereqs: [], credits: 6, },
+  { code: 'Electivo/Minor9-3',                        sem: 9, col: 3, type: 'specialty', name: 'Electivo/Minor',                        prereqs: [], credits: 6,},
+  { code: 'Electivo/Minor9-4',                        sem: 9, col: 4, type: 'specialty', name: 'Electivo/Minor',                        prereqs: [], credits: 6, },
 
   // Semestre 10
   { code: 'Trabajo de Título',                     sem: 10, col: 1, type: 'common',   name: 'Trabajo de Título',                     prereqs: [], credits: 30, },
@@ -147,7 +147,7 @@ cursos.forEach(c => {
   const d = document.createElement('div');
   d.classList.add('course');
   d.innerHTML = `
-    <div class="course-name">${c.code}</div>
+    <div class="course-name">${c.name}</div>
     <div class="course-credits">${c.credits}</div>
   `;
   d.dataset.code   = c.code;
